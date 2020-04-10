@@ -6,20 +6,16 @@
 
 int main()
 {	
-	Date dd, d3;
-	int y=0, m=0 , d=0;
-	std::cin >> d3;
-	Date d2{ 2020, Month::apr, 9 };
-    std::cout << "Hello User! Please enter additional years, months, days to default 2000.01.01\n";
-	std::cin >> y;
-	std::cin >> m;
-	std::cin >> d;
-	dd.Date::add_day(d);
-	dd.Date::add_month(m);
-	dd.Date::add_year(y);	
-	std::cout << dd;
-	std::cout << d2;
-	std::cout << d3;
+	std::vector<Course>courselist;	
+	std::string cn;
+	//std::cin >> d3;	
+    std::cout << "Hello User! Please enter name of course\n";	
+	std::cin >> cn;
+	Course c{ cn };
+	c.add_deadline();
+	std::cout << "Hello User! now we test the printing list\n";
+	c.duelist();
+	return 0;
 }
 
 
