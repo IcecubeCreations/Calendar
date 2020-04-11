@@ -12,6 +12,13 @@ Course::Course() :
 {	
 }
 
+Deadline::Deadline(int y, Month m, int d, std::string n, D_Type dt) :
+	Date{y, m, d}, a_name {	n }, kind{ dt }
+{
+	if (n.empty()) throw invalid{};
+}
+
+
 void Course::duelist() {
 	std::cout << name << ": \n";
 	for (int i = 0; i < v.size(); i++) {
@@ -20,25 +27,20 @@ void Course::duelist() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Deadline& d) {
-	return os << d.a_name << " due date: " << d.due << " type: " << print_type(d.kind);
+	return os << d.give_name() << " type: " << print_type(d.give_kind()) << static_cast <const Date &>(d) << '\n';
 }
 
 
-
 Deadline Make_DL() {
-	std::string s;
-	Date d;
-	int x;
+	std::string s;	
+	int x, y, m, d;
 	std::cout << "give name of deadline, leave empty if exam: ";
 	std::cin >> s;
 	std::cout << "give deadline in year_month_day: ";
-	std::cin >> d;
+	std::cin >> y >> m >> d;
 	std::cout << "give typename of deadline: ";
 	std::cin >> x;
-	Deadline dl;
-	dl.a_name = s;
-	dl.due = d;
-	dl.kind = D_Type(x);
+	Deadline dl { y, Month(m), d, s, D_Type(x) };	
 	return dl;
 }
 

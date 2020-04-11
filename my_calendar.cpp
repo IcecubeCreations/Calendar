@@ -6,15 +6,26 @@
 
 int main()
 {	
+	Date d{ 2021, Month(4), 22 };
+	std::cout << d <<'\n';
 	std::vector<Course>courselist;	
 	std::string cn;
-	//std::cin >> d3;	
     std::cout << "Hello User! Please enter name of course\n";	
 	std::cin >> cn;
 	Course c{ cn };
 	c.add_deadline();
 	std::cout << "Hello User! now we test the printing list\n";
 	c.duelist();
+/*	std::ofstream save_c;
+	save_c.open("input2.txt");
+	save_c.write((char*)&c, sizeof(c));
+
+	std::ifstream open_c;
+	open_c.open("input.txt");
+	Course x2;
+	open_c.read((char*)&x2, sizeof(x2));
+	x2.duelist();*/
+	
 	return 0;
 }
 

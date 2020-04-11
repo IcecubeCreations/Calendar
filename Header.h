@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 
 enum class Month {
@@ -32,9 +33,13 @@ private:
 	Month m;
 };
 
-struct Deadline {
-	std::string a_name;
-	Date due;
+class Deadline: public Date{
+public:
+	Deadline(int y, Month m, int d, std::string s, D_Type dt);
+	std::string give_name() const { return a_name; }
+	D_Type give_kind() const { return kind; }
+private:
+	std::string a_name;	
 	D_Type kind;
 };
 
@@ -45,6 +50,7 @@ public:
 	Course();
 	void duelist(); //prints list of deadlines in course
 	void add_deadline();
+	std::string r_name() { return name; };
 private:
 	std::string name;
 	std::vector<Deadline> v;
@@ -59,7 +65,6 @@ std::ostream& operator<<(std::ostream& os, const Date& d);
 std::istream& operator>>(std::istream& is, Date& d);
 
 std::ostream& operator<<(std::ostream& os, const Deadline& d);
-
 
 std::string print_type(D_Type v);
 
