@@ -6,16 +6,48 @@
 
 int main()
 {	
-	Date d{ 2021, Month(4), 22 };
-	std::cout << d <<'\n';
-	std::vector<Course>courselist;	
+	std::string input;
 	std::string cn;
-    std::cout << "Hello User! Please enter name of course\n";	
-	std::cin >> cn;
-	Course c{ cn };
-	c.add_deadline();
-	std::cout << "Hello User! now we test the printing list\n";
-	c.duelist();
+	std::vector<Course>courselist;
+	while (true) {
+		print_menu();
+		std::cin >> input;
+		switch (command(input)) {
+			case Input_T::error: std::cout << "incorrect output, type quit and hit enter to leave program.\n";
+			break;
+			case Input_T::load: std::cout << "not implemented yet.\n";
+			break;
+			case Input_T::save: std::cout << "not implemented yet.\n";
+			break;			
+			case Input_T::course: {
+				std::cout << "Hello User! Please enter name of course you want to add.\n";
+				std::cin >> cn;
+				Course c{ cn };
+				courselist.push_back(c);
+			}
+			break;
+			case Input_T::deadline: {
+				std::cout << "Hello User! Please enter name of course where deadline belongs.\n";
+				std::cin >> cn;
+				int i=find_in_list(cn, courselist);
+				courselist[i].add_deadline();
+				break;
+			}
+			break;
+			case Input_T::call: {
+				std::cout << "Hello User! Please enter name of course you want deadlines of.\n";
+				std::cin >> cn;
+				int i = find_in_list(cn, courselist);
+				courselist[i].duelist();
+				break;
+			}
+			case Input_T::callall: {
+				for (Course x : courselist) x.duelist();
+				break;
+			}
+			case Input_T::quit: return 0;
+		}				
+	}
 /*	std::ofstream save_c;
 	save_c.open("input2.txt");
 	save_c.write((char*)&c, sizeof(c));

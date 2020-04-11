@@ -15,6 +15,10 @@ enum class D_Type {
 	program=1, paper, combo, calc, exam, mid, resit, misc
 };
 
+enum class Input_T {
+	load, save, course, deadline, list, call, callall, quit, error
+};
+
 class Date {
 public:
 	class invalid {};
@@ -69,3 +73,9 @@ std::ostream& operator<<(std::ostream& os, const Deadline& d);
 std::string print_type(D_Type v);
 
 Deadline Make_DL();
+
+void print_menu();
+
+Input_T command(std::string s);
+
+int find_in_list(std::string s, std::vector<Course> v);
