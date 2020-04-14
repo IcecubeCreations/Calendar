@@ -16,6 +16,7 @@ Deadline::Deadline(int y, Month m, int d, std::string n, D_Type dt) :
 	Date{y, m, d}, a_name {	n }, kind{ dt }
 {
 	if (n.empty()) throw invalid{};
+	if (dt<D_Type::program || dt>D_Type::misc) throw invalid{};
 }
 
 
@@ -39,7 +40,7 @@ Deadline Make_DL() {
 	std::cout << "give deadline in year_month_day: ";
 	std::cin >> y >> m >> d;
 	std::cout << "give typename of deadline: ";
-	std::cin >> x;
+	std::cin >> x;	
 	Deadline dl { y, Month(m), d, s, D_Type(x) };	
 	return dl;
 }

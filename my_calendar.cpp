@@ -38,6 +38,7 @@ int main()
 				std::cout << "Hello User! Please enter name of course you want deadlines of.\n";
 				std::cin >> cn;
 				int i = find_in_list(cn, courselist);
+				if (i < 0) break;
 				courselist[i].duelist();
 				break;
 			}
